@@ -1,3 +1,3 @@
 # __init__.py
 
-from .firestoreupload import FireStoreUpload
+from .firestoreupload import firestoreupload
