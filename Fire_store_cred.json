@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "inspire-innovation",
+  "private_key_id": "2e8d470a645139180bd1e5cc873c1f8b5294b6da",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCdK1Q5Aah+4uyT\ne9FtvUzYF6ow5Ot7iyE5C3l/k8tsaNh/UQq8IWHmaz5NrQseC7Gjy3H4dDuX9B3z\ntaSx0+/fFtcPfOHPtoJqT8PNvnWO/fdijIdVElg95ndVkDZA1OK/H2qk3lB5xNxp\nNrb8JTwSjoUS9YiuxzRq8FDS94u2+0mfcw9zNgbIS7zZ/CrMFmaELXCP7xNzQLWq\n5HmGmGjw3t2XrnGpAd/GR6Shux8D04h+gTh9otoyMaDV4r/HH4BII4Sl+cFRW6vZ\n7cUTuUeS1P8OKPKolRm4oGc7R3+CSrA+fGiimJwXumOpcfWNEw8AxNxyXF2LM4CN\n/ySBnkubAgMBAAECggEAANtGwxAbFXnyH8mkdgx6jzuYc1oZXcZ/1gTrKBgA8KR6\nTZNTqNEmbJrir4oFDf2yqE8IXiTFWwoltvl4niQmt1izWlkWt/WULLUmPt2jXAtO\nnlcKuRrM/VAKEB7QP4vezSYu2XAsEHB+DQVoe45OZKwp1dUdu2odgy8FGb6R9dt9\ni4uy67nY7C63ft4b33ZyCRLnVSjBCtWcIsOZM+sRLl9zCNBCgnucCmF2oo5Oaw8b\nlpXnhOSKLFcGp+c0E7nxmxgRk3CbnFvw8A2OwkUeKm5m8TcA7MsG5AmhwvD4xE58\nDPF1d+Ea1F/CSjEkGC0cdVosWTKC2d5RjeaA/PaChQKBgQDTno/2tkBMWlSp8ccC\n736ekg2sddzlom3RLbLFDAXU43EDmkTqoFVO6CMdrzDa1oEYpzYJDlO9E4i/yLU/\n473Buvfk/ecJGygWXbriPKiCjQND/LLtmQ052gGNSn4Ei8KlfIZYr9mnBzdYxebJ\nCW8gfUB6XmJ3BGQofl+o/KbM3QKBgQC+IXGihyF2jj0RiFOvKDiS5G4UGBj2j/fT\nncII7JTlcmXLd2hXE5Qt9oJpEaQ1GjCk3I4gaLJWMBPMMm4kEyZ+YAJodeNgrBHs\nN2TV0rvhazDpGG2tSOfJmqHcwVBwXuCpzxhKesHLROQLhXW0eEONLl5AXS+AtvMe\nFgg1TS5W1wKBgQCy8Rx5GOlL5wI6ZhjLcaqW+ZeYYl20y+GihMrq9lykBOLWkgd+\ngq9ANukiu7ZLBiFJsHLvu26xrifvTA9/g9s8SxY9SzmmqJEAQKe7kGFJa2X8glzm\nronRhnfTes8OlwOznZWYvrIEHAUACvA4xMJ0LZVtJAyM6WisGRhYs7Nz/QKBgDbc\n8axjb92E98w6WWN+qKyCa90ygumK64lNyXLHycNXulX2883EoYqNyl3FMGv+TbEU\nz5I8g9Fo+B2BI9UXDZGD5M39zonTvSw7Y8Zrk7ldM/TfDq7lDbVYAILx6WMzjYKS\ndsDvIUKlc2R7s1ZLKbrweVP7T7zFjevNkbrHtaprAoGBAJa/UsFTCuKY2Etsd4fl\n9XNrMVV5RCUXzuK8tx0nACbBl+wcxdTTC716w0dIV53C5Qjl8uCM0Bc/Ve+xosOG\n/4h4RL50KNIwS66AusuVPeczS5k61Of07UB3pBFWJVNQmkdIGrPbaC0UVDfQtzhK\nAypAyjfTu6x9ElZuIu3N4vf8\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-i8bfw@inspire-innovation.iam.gserviceaccount.com",
+  "client_id": "108249607424795133379",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-i8bfw%40inspire-innovation.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

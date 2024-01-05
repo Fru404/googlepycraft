@@ -1,0 +1,43 @@
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
+
+
+def _create_drive_service(self):
+        creds = service_account.Credentials.from_service_account_file(
+            self.credentials_path,
+            scopes=['https://www.googleapis.com/auth/drive']
+        )
+        return build('drive', 'v3', credentials=creds)
+
+    def upload_to_google_drive(self, local_file_path, remote_file_name):
+        """
+        Uploads a local file to Google Drive.
+
+        Parameters:
+        - local_file_path: The local file path to be uploaded.
+        - remote_file_name: The desired name of the file in Google Drive.
+
+        Returns:
+        - None
+        """
+        try:
+            file_metadata = {
+                'name': remote_file_name,
+                'mimeType': 'application/vnd.ms-excel'  # Set the MIME type accordingly
+            }
+            media = MediaFileUpload(local_file_path, mimetype='application/vnd.ms-excel', resumable=True)
+            request = self.service.files().create(body=file_metadata, media_body=media)
+
+            response = None
+            while response is None:
+                status, response = request.next_chunk()
+                if status:
+                    print(f"Uploaded {int(status.progress() * 100)}%")
+
+            file_id = response['id']
+            link = f"https://drive.google.com/file/d/{file_id}"
+
+            print(f"File uploaded to Google Drive: {link}")
+        except Exception as e:
+            print(f"Error uploading file to Google Drive: {e}")
