@@ -1,9 +1,20 @@
 #import package
 from googlepycraft.googleSheet.gsheetsdb import gsheetsdb as gb
 from googlepycraft.fireStore.firestoreupload import firestoreupload
-#setup your credentials
-credentials_path = 'credentials.json'
-sheet_url='https://docs.google.com/spreadsheets/d/15FfUKjivLLftJ3R0eDVuxUYRFJd6pyWWOc8vWxTiLlA/edit#gid=0'
+from googlepycraft.app_config import Admin
+import os
+
+# Instantiate the Admin class
+admin_instance = Admin()
+os.environ['SHEET_NUMBER'] = '2'
+# Access the variables from the admin instance
+credentials_path = admin_instance.credentials_path
+sheetNumber = os.environ.get('SHEET_NUMBER')
+sheet_url = admin_instance.sheet_url(sheet_number=sheetNumber)
+storage_bucket = admin_instance.storage_bucket
+
+# Now you can use these variables as needed
+gsheets_instance = gb(credentials_path, sheet_url,sheet_number=sheetNumber)
 
 #begin by instanciating the class
 gsheets_instance = gb(credentials_path,sheet_url)
@@ -16,7 +27,7 @@ DataFrame = sheets.in_pd()
 
 SecondSheet=DataFrame[:2]
 
-#sheets.read_sheet('name',None,2,4)
+sheets.read_sheet('name',None,2,4)
 
 
 #fire_instance.upload_file(local_file_path='/workspaces/codespaces-blank/FirstSheet.xlsx')

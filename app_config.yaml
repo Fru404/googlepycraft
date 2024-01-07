@@ -1,0 +1,7 @@
+credentials_path: credentials.json
+storage_bucket: realtime-375815.appspot.com
+sheets:
+  - sheet_number: '2'
+    sheet_name: User Data
+    sheet_url: https://docs.google.com/spreadsheets/d/15FfUKjivLLftJ3R0eDVuxUYRFJd6pyWWOc8vWxTiLlA/edit#gid=0
+

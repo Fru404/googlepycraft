@@ -3,10 +3,12 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import json
 import pandas as pd
-
+from googlepycraft.app_config import Admin
+import os
 # Define a class for interacting with Google Sheets as a database
 class gsheetsdb:
-    def __init__(self, credentials_path='', sheet_url='') -> None:
+    
+    def __init__(self, credentials_path='', sheet_url='',sheet_number='') -> None:
         """
         Initialize the gsheetsdb class.
 
@@ -15,6 +17,10 @@ class gsheetsdb:
         """
         self.credentials_path = credentials_path
         self.sheet_url = sheet_url
+        self.sheet_number = sheet_number
+        self.admin_instance=Admin()
+        
+        
 
     def read_sheet(self, key=None, number_of_rows=None, start_index=None, end_index=None):
         """
@@ -26,12 +32,17 @@ class gsheetsdb:
         :param end_index: The ending index of the rows to retrieve.
         :return: List of dictionaries representing the specified data.
         """
+        
+        credentials_path = self.admin_instance.credentials_path
+        sheet_num=self.sheet_number
+        sheetNumber = os.environ.get('SHEET_NUMBER')
+        sheet_url = self.admin_instance.sheet_url(sheetNumber)
         try:
             # Set up authentication and authorization
             scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-            creds = ServiceAccountCredentials.from_json_keyfile_name(self.credentials_path, scope)
+            creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
             client = gspread.authorize(creds)
-            spreadsheet = client.open_by_url(self.sheet_url)
+            spreadsheet = client.open_by_url(sheet_url)
 
             # Get the first (default) sheet
             sheet = spreadsheet.sheet1

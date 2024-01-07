@@ -8,6 +8,7 @@ import yaml
 import datetime
 import random
 import string
+from googlepycraft.app_config import Admin
 
 class firestoreupload:
     def __init__(self, credentials_path, storage_bucket) -> None:
@@ -17,8 +18,10 @@ class firestoreupload:
         :param credentials_path: Path to the Firebase service account credentials JSON file.
         :param storage_bucket: Firebase Storage bucket name.
         """
-        self.credentials_path = credentials_path
-        self.storage_bucket = storage_bucket
+        
+        
+        credentials_path = credentials_path
+        storage_bucket = storage_bucket
         self.file_url=''
         
         
@@ -60,12 +63,16 @@ class firestoreupload:
 
         :param local_file_path: Path to the local file to be uploaded.
         """
-      
+        admin_instance = Admin()
+ 
+        # Access the variables from the admin instance
+        credentials_path = admin_instance.credentials_path
         self.local_file_path = local_file_path
+        storage_bucket = admin_instance.storage_bucket
         try:
             # Initialize Firebase app with credentials and storage bucket
-            cred = credentials.Certificate(self.credentials_path)
-            initialize_app(cred, {'storageBucket': self.storage_bucket})
+            cred = credentials.Certificate(credentials_path)
+            initialize_app(cred, {'storageBucket': storage_bucket})
 
             # Get file name from the local file path
             fileName = local_file_path
