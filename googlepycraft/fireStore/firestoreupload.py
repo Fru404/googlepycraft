@@ -10,6 +10,33 @@ import random
 import string
 from googlepycraft.app_config import Admin
 
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Set the optimal logging level (adjust as needed)
+logging.basicConfig(level=logging.INFO)
+
+# Create a logger with the module name
+logger = logging.getLogger(__name__)
+
+# Configure loggers at the module level
+# (You can configure the logger with additional settings if needed)
+logger.setLevel(logging.DEBUG)
+
+# Include timestamps and ensure consistent formatting
+formatter = logging.Formatter('%(asctime)s- %(name)s - %(levelname)s - %(message)s')
+
+# Create a rotating file handler
+# Replace 'your_log_file.log' with the desired log file name
+# Set maxBytes to the maximum size of each log file
+# Set backupCount to the number of backup files to keep
+file_handler = RotatingFileHandler('logFile.log', maxBytes=1024, backupCount=3)
+file_handler.setFormatter(formatter)
+
+# Add the file handler to the logger
+logger.addHandler(file_handler)
+
+
 class firestoreupload:
     def __init__(self, credentials_path, storage_bucket) -> None:
         """
@@ -36,8 +63,9 @@ class firestoreupload:
             with open(message_yml, 'a') as yaml_file:
                 yaml.dump(message, yaml_file, default_flow_style=False)
             print(f'{yaml.dump(message,default_flow_style=False)} Saved')
+            logger.info(' file Saved')
         except Exception as e:
-            print(f'Error saving message: {e}')
+            logger.error(f'Error saving message: {e}')
 
     def overwrite_message_in_yaml(self, existing_data, message, message_yml):
         print(yaml.dump(existing_data,default_flow_style=False))
@@ -47,12 +75,15 @@ class firestoreupload:
             try:
                 with open(message_yml, 'w') as yaml_file:
                     yaml.dump(existing_data, yaml_file, default_flow_style=False)
-                print('/n')
+                
                 print(f'{yaml.dump(message,default_flow_style=False)} Document uploaded')
+                reference = existing_data['ref']
+                logger.info(f' file with reference {reference} Document uploaded')
             except Exception as e:
                 print(f'Error overwriting message: {e}')
+                logger.debug(f'Error overwriting message: {e}')
         else:
-            print('/n')
+            logger.info(f'Not uploaded')
             print(f'{yaml.dump(message,default_flow_style=False)} Not uploaded')
 
         
@@ -117,10 +148,13 @@ class firestoreupload:
                         self.overwrite_message_in_yaml(existing_data, message, message_yml)
                     else:
                         self.save_message_to_yaml(message, message_yml)
+                        logger.info('file uploaded')
                         print('file uploaded')
             else:
+                  logger.info('file not recieved')
                   print('file not recieved')
         except Exception as e:
+                logger.error(f"Error uploading file: {e}")
                 print(f"Error uploading file: {e}")
                 
     def get_file(self,file_url,local_folder='local'):
@@ -141,9 +175,10 @@ class firestoreupload:
             # Save the file locally
             with open(file_name, 'wb') as file:
                 file.write(response.content)
-
+            logger.info(f" {file_name}downloaded successfully.")
             print(f"File '{file_name}' downloaded successfully.")
 
         except Exception as e:
+            logger.error(f"Error downloading file: {e}")
             print(f"Error downloading file: {e}")
             
