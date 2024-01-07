@@ -1,0 +1,11 @@
+README.md
+setup.py
+fireStore/__init__.py
+fireStore/firestoreupload.py
+googleSheet/__init__.py
+googleSheet/gsheetsdb.py
+googlepycraft.egg-info/PKG-INFO
+googlepycraft.egg-info/SOURCES.txt
+googlepycraft.egg-info/dependency_links.txt
+googlepycraft.egg-info/requires.txt
+googlepycraft.egg-info/top_level.txt

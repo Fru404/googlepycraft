@@ -1,11 +1,11 @@
 # setup.py
 
-from setuptools import setup
+from setuptools import setup,find_packages
 
 setup(
     name='googlepycraft',
     version='0.1',
-    packages=['googlepycraft', 'googlepycraft.firestoreupload', 'googlepycraft.gsheetsdb'],
+    packages=find_packages(),
     install_requires=[
         'firebase-admin',
         'gspread',

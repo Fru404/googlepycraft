@@ -117,35 +117,3 @@ class gsheetsdb:
                 trimmed_sheet.append(row)
 
         return json.dumps(trimmed_sheet)
-    
-    def save(self,data,save_as):
-        
-        """
-        Converts JSON or DataFrame to Excel (.xls) format and saves it locally.
-
-        Parameters:
-        - data: Either a JSON object or a pandas DataFrame.
-        - output_file: The local file path where the Excel file will be saved.
-
-        Returns:
-        - None
-        """
-        if isinstance(data, dict):  # Check if the input is a JSON object
-            try:
-                df = pd.json_normalize(data)  # Convert JSON to DataFrame
-            except Exception as e:
-                print(f"Error converting JSON to DataFrame: {e}")
-                return
-        elif isinstance(data, pd.DataFrame):  # Check if the input is a DataFrame
-            df = data
-        else:
-            print("Unsupported data type. Please provide either a JSON object or a DataFrame.")
-            return
-
-        try:
-            print(f" {save_as} successfully  saved ")
-            return df.to_excel(save_as, index=False)  # Save DataFrame to Excel
-            
-        except Exception as e:
-            print(f"Error saving DataFrame to Excel: {e}")
-

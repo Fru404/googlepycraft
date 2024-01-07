@@ -1,0 +1,20 @@
+# This is a comment at the top level
+company: XYZ Corporation
+
+departments:
+  - name: Engineering
+    head: John Doe
+    employees:
+      - name: Alice
+        role: Software Engineer
+      - name: Bob
+        role: Senior Software Engineer
+
+# Comment within the list of departments
+  - name: Sales
+    head: Jane Smith
+    employees:
+      - name: Charlie  # This is a comment for Charlie
+        role: Sales Representative
+      - name: Diana
+        role: Sales Manager
