@@ -71,6 +71,7 @@ class gsheetsdb:
                 rows_to_return = rows_within_range
 
             # Print or return the specified data
+                self.rows_to_return = []
             for row in rows_to_return:
                 if key is not None:
                     if key in row:
@@ -78,8 +79,8 @@ class gsheetsdb:
                         print(f"{key}: {value}")
                     else:
                         print(f"{key}: Not found in row")
-
-            return rows_to_return
+            
+            return None
 
         except gspread.exceptions.APIError as e:
             print(f"APIError: {e.response}")
@@ -91,12 +92,23 @@ class gsheetsdb:
 
         :return: Pandas DataFrame.
         """
-        sheet = self.read_sheet()
-        if not sheet:
-            pass
+        credentials_path = self.admin_instance.credentials_path
+        sheetNumber = os.environ.get('SHEET_NUMBER')
+        sheet_url = self.admin_instance.sheet_url(sheetNumber)
+        # Set up authentication and authorization
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        creds = ServiceAccountCredentials.from_json_keyfile_name(credentials_path, scope)
+        client = gspread.authorize(creds)
+        spreadsheet = client.open_by_url(sheet_url)
+        self.read_sheet()
+        
+        # Get the first (default) sheet
+        sheet = spreadsheet.sheet1
 
+        # Get all values from the sheet
+        all_values = sheet.get_all_values()
         # Convert the list of dictionaries to a Pandas DataFrame
-        df = pd.DataFrame(sheet)
+        df = pd.DataFrame(all_values[1:], columns=all_values[0])
         return df
 
     def in_json(self, target_key=None, num_rows=None, start_index=None, end_index=None):
